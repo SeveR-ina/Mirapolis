@@ -18,3 +18,12 @@
 Логин: fominaelena
 Пароль: 1P73BP4Z
 -----
+Решение:
+ссылка на проект в GitHub: https://github.com/SeveR-ina/Mirapolis
+
+тесты:
+src\test\java\SignInTest.java: 
+- successSignInTest()
+- failedSignInTest() - параметризованный тест
+
+testng файл: tests.xml
