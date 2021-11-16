@@ -28,4 +28,15 @@ src\test\java\SignInTest.java:
 - successSignInTest()
 - failedSignInTest() - параметризованный тест
 
-testng файл: tests.xml
+testng файл: linearTests.xml
+
+параллельный запуск тестов: parallelTests.xml
+
+-----
+Инструкция для запуска тестов через IDE:
+
+чтобы запустить тест через IDE нужно в параметрах конфигурации в поле VM options указать строку вида:
+
+-ea -Dbrowser="{browserType}"
+
+, где browserType это: Chrome или FireFox или Edge

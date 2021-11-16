@@ -1,5 +1,5 @@
-import Pages.AuthPage;
-import Pages.HomePage;
+import pages.AuthPage;
+import pages.HomePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -11,6 +11,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.Properties;
+
+import static utils.TimeOuts.DEFAULT_TIMEOUT_IN_SECONDS;
 
 abstract class BeforeTest {
     WebDriver driver;
@@ -71,7 +73,7 @@ abstract class BeforeTest {
 
     private void maximizeWindow() {
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(DEFAULT_TIMEOUT_IN_SECONDS.getTimeOutValue()));
         driver.manage().deleteAllCookies();
     }
 

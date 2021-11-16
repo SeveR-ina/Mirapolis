@@ -1,9 +1,10 @@
-package Pages;
+package pages;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import testData.AccInfo;
 
 public class AuthPage extends BasePage {
     @FindBy(xpath = "//input[@type='text']")
@@ -17,10 +18,10 @@ public class AuthPage extends BasePage {
         super(driver);
     }
 
-    public void fillLogInForm(String login, String pass) {
+    public void fillLogInForm(AccInfo accInfo) {
         waitForVisibilityOf(loginTextArea);
-        typeInField(loginTextArea, login);
-        typeInField(passTextArea, pass);
+        typeInField(loginTextArea, accInfo.getLogin());
+        typeInField(passTextArea, accInfo.getPass());
     }
 
     public void submitSignUpForm() {
