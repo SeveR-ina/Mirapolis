@@ -4,13 +4,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import utils.TimeOuts;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.time.Duration;
 import java.util.Properties;
-
-import static utils.TimeOuts.DEFAULT_TIMEOUT_IN_SECONDS;
+import java.util.concurrent.TimeUnit;
 
 abstract class BeforeTest {
     WebDriver driver;
@@ -63,7 +62,7 @@ abstract class BeforeTest {
 
     private void maximizeWindow() {
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(DEFAULT_TIMEOUT_IN_SECONDS.getTimeOutValue()));
+        driver.manage().timeouts().implicitlyWait(TimeOuts.DEFAULT_TIMEOUT_IN_SECONDS.getTimeOutValue(), TimeUnit.SECONDS);
         driver.manage().deleteAllCookies();
     }
 
