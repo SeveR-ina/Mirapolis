@@ -68,7 +68,7 @@ abstract class BeforeTest {
     }
 
     private void openChrome() {
-        WebDriverManager.chromedriver().setup();
+        WebDriverManager.chromedriver().browserVersion("88.0.4324.192").setup();
         driver = new ChromeDriver();
     }
 
