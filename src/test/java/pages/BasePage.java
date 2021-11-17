@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.TimeOuts;
 
 
 abstract class BasePage {
@@ -16,7 +17,7 @@ abstract class BasePage {
     }
 
     public void waitForVisibilityOf(WebElement webElement) {
-        new WebDriverWait(driver, 10)
+        new WebDriverWait(driver, TimeOuts.DEFAULT_TIMEOUT_IN_SECONDS.getTimeOutValue())
                 .until(ExpectedConditions.visibilityOf(webElement));
     }
 

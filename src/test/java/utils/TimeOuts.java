@@ -8,5 +8,5 @@ public enum TimeOuts {
     DEFAULT_TIMEOUT_IN_SECONDS(10);
 
     @Getter
-    private int timeOutValue;
+    private long timeOutValue;
 }
