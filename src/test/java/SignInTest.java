@@ -1,13 +1,14 @@
+import org.testng.annotations.*;
 import pages.AuthPage;
 import pages.HomePage;
-import org.testng.annotations.*;
 import testData.AccInfo;
 
 import java.io.IOException;
 
 import static net.andreinc.mockneat.types.enums.PassStrengthType.WEAK;
 import static net.andreinc.mockneat.unit.user.Passwords.passwords;
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
 
 public class SignInTest extends BeforeTest {
     private AuthPage authPage;
@@ -22,7 +23,7 @@ public class SignInTest extends BeforeTest {
     @BeforeMethod
     public void openAuthPage(String browser) {
         openBrowsers(browser);
-        authPage = getAuthPage();
+        authPage = new AuthPage(driver);
 
         assertNotNull(authPage, "Auth page was not loaded");
     }
@@ -36,7 +37,7 @@ public class SignInTest extends BeforeTest {
     public void successSignInTest(AccInfo accInfo) {
         authPage.fillLogInForm(accInfo);
         authPage.submitSignUpForm();
-        HomePage homePage = getHomePage();
+        HomePage homePage = new HomePage(driver);
 
         assertNotNull(homePage, "Home page was not loaded");
         assertEquals(homePage.getProfileName().trim(), accInfo.getFullName(),

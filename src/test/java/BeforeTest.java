@@ -1,18 +1,15 @@
-import pages.AuthPage;
-import pages.HomePage;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.PageFactory;
+import utils.TimeOuts;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.time.Duration;
 import java.util.Properties;
-
-import static utils.TimeOuts.DEFAULT_TIMEOUT_IN_SECONDS;
+import java.util.concurrent.TimeUnit;
 
 abstract class BeforeTest {
     WebDriver driver;
@@ -41,14 +38,6 @@ abstract class BeforeTest {
         driver.quit();
     }
 
-    public AuthPage getAuthPage() {
-        return PageFactory.initElements(driver, AuthPage.class);
-    }
-
-    public HomePage getHomePage() {
-        return PageFactory.initElements(driver, HomePage.class);
-    }
-
     private void openBrowser(String browser) {
         openAllBrowsers(browser);
         driver.get(testProperties.getProperty("siteURL"));
@@ -73,30 +62,22 @@ abstract class BeforeTest {
 
     private void maximizeWindow() {
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(DEFAULT_TIMEOUT_IN_SECONDS.getTimeOutValue()));
+        driver.manage().timeouts().implicitlyWait(TimeOuts.DEFAULT_TIMEOUT_IN_SECONDS.getTimeOutValue(), TimeUnit.SECONDS);
         driver.manage().deleteAllCookies();
     }
 
     private void openChrome() {
-        //TODO: https://stackoverflow.com/questions/35867102/how-to-work-with-selenium-chrome-driver-in-maven-without-chromedriver-exe
-        System.setProperty("webdriver.chrome.driver", getDriverUrl("chromeDir"));
+        WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
-        System.out.println("Chrome was launched Successfully");
     }
 
     private void openEdge() {
-        System.setProperty("webdriver.edge.driver", getDriverUrl("edgeDir"));
+        WebDriverManager.edgedriver().setup();
         driver = new EdgeDriver();
-        System.out.println("Edge was launched Successfully");
     }
 
     private void openFireFox() {
-        System.setProperty("webdriver.gecko.driver", getDriverUrl("geckoDir"));
+        WebDriverManager.firefoxdriver().setup();
         driver = new FirefoxDriver();
-        System.out.println("Firefox Launched Successfully");
-    }
-
-    private String getDriverUrl(String driverURL) {
-        return testProperties.getProperty(driverURL);
     }
 }
