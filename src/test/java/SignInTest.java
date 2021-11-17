@@ -1,14 +1,14 @@
-import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.*;
 import pages.AuthPage;
 import pages.HomePage;
-import org.testng.annotations.*;
 import testData.AccInfo;
 
 import java.io.IOException;
 
 import static net.andreinc.mockneat.types.enums.PassStrengthType.WEAK;
 import static net.andreinc.mockneat.unit.user.Passwords.passwords;
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
 
 public class SignInTest extends BeforeTest {
     private AuthPage authPage;
