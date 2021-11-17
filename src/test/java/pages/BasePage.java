@@ -11,7 +11,7 @@ import java.time.Duration;
 import static utils.TimeOuts.DEFAULT_TIMEOUT_IN_SECONDS;
 
 abstract class BasePage {
-    public WebDriver driver;
+    WebDriver driver;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
