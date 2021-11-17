@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import testData.AccInfo;
 
 public class AuthPage extends BasePage {
-    @FindBy(xpath = "//input[@type='text']")
+    @FindBy(xpath = "//input[@name='user']")
     private WebElement loginTextArea;
     @FindBy(xpath = "//input[@type='password']")
     private WebElement passTextArea;
