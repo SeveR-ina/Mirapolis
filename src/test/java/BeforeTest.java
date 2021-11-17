@@ -1,3 +1,4 @@
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -67,25 +68,17 @@ abstract class BeforeTest {
     }
 
     private void openChrome() {
-        //TODO: https://stackoverflow.com/questions/35867102/how-to-work-with-selenium-chrome-driver-in-maven-without-chromedriver-exe
-        System.setProperty("webdriver.chrome.driver", getDriverUrl("chromeDir"));
+        WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
-        System.out.println("Chrome was launched Successfully");
     }
 
     private void openEdge() {
-        System.setProperty("webdriver.edge.driver", getDriverUrl("edgeDir"));
+        WebDriverManager.edgedriver().setup();
         driver = new EdgeDriver();
-        System.out.println("Edge was launched Successfully");
     }
 
     private void openFireFox() {
-        System.setProperty("webdriver.gecko.driver", getDriverUrl("geckoDir"));
+        WebDriverManager.firefoxdriver().setup();
         driver = new FirefoxDriver();
-        System.out.println("Firefox Launched Successfully");
-    }
-
-    private String getDriverUrl(String driverURL) {
-        return testProperties.getProperty(driverURL);
     }
 }
