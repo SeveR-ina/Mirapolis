@@ -7,10 +7,8 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.time.Duration;
 import java.util.Properties;
-
-import static utils.TimeOuts.DEFAULT_TIMEOUT_IN_SECONDS;
+import java.util.concurrent.TimeUnit;
 
 abstract class BeforeTest {
     WebDriver driver;
@@ -63,12 +61,13 @@ abstract class BeforeTest {
 
     private void maximizeWindow() {
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(DEFAULT_TIMEOUT_IN_SECONDS.getTimeOutValue()));
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(DEFAULT_TIMEOUT_IN_SECONDS.getTimeOutValue()));
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().deleteAllCookies();
     }
 
     private void openChrome() {
-        WebDriverManager.chromedriver().browserVersion("88.0.4324.192").setup();
+        WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
     }
 
