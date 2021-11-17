@@ -9,7 +9,7 @@ import testData.AccInfo;
 public class AuthPage extends BasePage {
     @FindBy(xpath = "//input[@name='user']")
     private WebElement loginTextArea;
-    @FindBy(xpath = "//input[@type='password']")
+    @FindBy(xpath = "//input[@name='password']")
     private WebElement passTextArea;
     @FindBy(id = "button_submit_login_form")
     private WebElement buttonSignIn;
