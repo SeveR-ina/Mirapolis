@@ -1,3 +1,4 @@
+import org.openqa.selenium.support.PageFactory;
 import pages.AuthPage;
 import pages.HomePage;
 import org.testng.annotations.*;
@@ -22,7 +23,7 @@ public class SignInTest extends BeforeTest {
     @BeforeMethod
     public void openAuthPage(String browser) {
         openBrowsers(browser);
-        authPage = getAuthPage();
+        authPage = new AuthPage(driver);
 
         assertNotNull(authPage, "Auth page was not loaded");
     }
@@ -36,7 +37,7 @@ public class SignInTest extends BeforeTest {
     public void successSignInTest(AccInfo accInfo) {
         authPage.fillLogInForm(accInfo);
         authPage.submitSignUpForm();
-        HomePage homePage = getHomePage();
+        HomePage homePage = new HomePage(driver);
 
         assertNotNull(homePage, "Home page was not loaded");
         assertEquals(homePage.getProfileName().trim(), accInfo.getFullName(),
